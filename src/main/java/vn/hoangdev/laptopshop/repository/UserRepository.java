@@ -10,7 +10,10 @@ import vn.hoangdev.laptopshop.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User save(User hoangdev);
+    
     List<User> findOneByEmail(String email);
 
     List<User> findAll();
+
+    User findById(long id);
 }
