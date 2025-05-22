@@ -28,7 +28,7 @@
                                     <li class="breadcrumb-item active">User</li>
                                 </ol>
 
-                                <div class="container mt-5">
+                                <div class="mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
