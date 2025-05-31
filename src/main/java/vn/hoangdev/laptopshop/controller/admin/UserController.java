@@ -9,19 +9,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import vn.hoangdev.laptopshop.domain.User;
+import vn.hoangdev.laptopshop.service.UploadService;
 import vn.hoangdev.laptopshop.service.UserService;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private final UploadService uploadService;
     
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UploadService uploadService) {
         this.userService = userService;
-      
+        this.uploadService = uploadService;
     }
     @RequestMapping("/")
     public String getHomePage(Model model) {
@@ -47,15 +50,16 @@ public class UserController {
         return "admin/user/detail";
     }
 
-    @RequestMapping("/admin/user/create") // GET
+    @GetMapping("/admin/user/create") // GET
     public String getCreateUserPage(Model model) {
         model.addAttribute("newUser",new User());
         return "admin/user/create";
     }
 
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User hoangdev) {
-        this.userService.handleSaveUser(hoangdev);
+    @PostMapping(value = "/admin/user/create")
+    public String createUserPage(Model model, @ModelAttribute("newUser") User hoangdev, @RequestParam("hoangFile") MultipartFile file) {
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        //this.userService.handleSaveUser(hoangdev);
         return "redirect:/admin/user";
     }
 

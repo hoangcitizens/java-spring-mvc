@@ -26,9 +26,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.viewResolver(viewResolver());
     }
 
+    /*
+     * Tất cả đường link xuất phát từ /css/, /js/, /images/ 
+     * sẽ tự động tìm đến thư mục resources/css/, resources/js/, resources/images/
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/resources/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/resources/images/");
     }
 }
