@@ -2,6 +2,7 @@ package vn.hoangdev.laptopshop.controller.admin;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +22,12 @@ public class UserController {
 
     private final UserService userService;
     private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
     
-    public UserController(UserService userService, UploadService uploadService) {
+    public UserController(UserService userService, UploadService uploadService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
     @RequestMapping("/")
     public String getHomePage(Model model) {
@@ -59,7 +62,12 @@ public class UserController {
     @PostMapping(value = "/admin/user/create")
     public String createUserPage(Model model, @ModelAttribute("newUser") User hoangdev, @RequestParam("hoangFile") MultipartFile file) {
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-        //this.userService.handleSaveUser(hoangdev);
+        String hashedPassword = this.passwordEncoder.encode(hoangdev.getPassword());
+        
+        hoangdev.setAvatar(avatar);
+        hoangdev.setPassword(hashedPassword);
+        hoangdev.setRole(this.userService.getRoleByName(hoangdev.getRole().getName())); // Default role
+        this.userService.handleSaveUser(hoangdev);
         return "redirect:/admin/user";
     }
 
@@ -99,5 +107,3 @@ public class UserController {
         return "redirect:/admin/user";
     }
 }
-
-
