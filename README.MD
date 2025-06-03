@@ -1,7 +1,8 @@
 # Java Spring Starter template
 
-Template này được sử dụng cho series Java Spring MVC (dự án laptopshop) của tác giả Hỏi Dân IT (Eric)
+Template này sử dụng Java Spring MVC (dự án laptopshop) project cá nhân
 
 ## Về tác giả
 
+LinkedIn: https://www.linkedin.com/in/huuhoang-the-consul/
 Nguyễn Hữu Hoàng - nguyen.huu.hoang.dev@gmail.com
