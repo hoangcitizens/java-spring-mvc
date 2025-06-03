@@ -5,5 +5,5 @@ Template này sử dụng Java Spring MVC (dự án laptopshop) project cá nhâ
 ## Về tác giả
 Nguyễn Hữu Hoàng
 
-LinkedIn: https://www.linkedin.com/in/huuhoang-the-consul/
+LinkedIn: https://www.linkedin.com/in/huuhoang-the-consul/ \n
 Email: nguyen.huu.hoang.dev@gmail.com
