@@ -1,7 +1,7 @@
 package vn.hoangdev.laptopshop.domain;
 
-import java.util.List;
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,8 +12,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -50,6 +50,9 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
+
+    // @OneToOne(mappedBy = "user")
+    // private Cart cart;
 
     @Override
     public String toString() {
@@ -128,5 +131,13 @@ public class User implements Serializable {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    // public Cart getCart() {
+    //     return cart;
+    // }
+
+    // public void setCart(Cart cart) {
+    //     this.cart = cart;
+    // }
 
 }

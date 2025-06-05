@@ -47,6 +47,33 @@ public class UserController {
         return "admin/user/show";
     }
 
+    // @RequestMapping("/admin/user")
+    // public String getUserPage(Model model,
+    //         @RequestParam("page") Optional<String> pageOptional) {
+    //     int page = 1;
+    //     try {
+    //         if (pageOptional.isPresent()) {
+    //             // convert from String to int
+    //             page = Integer.parseInt(pageOptional.get());
+    //         } else {
+    //             // page = 1
+    //         }
+    //     } catch (Exception e) {
+    //         // page = 1
+    //         // TODO: handle exception
+    //     }
+
+    //     Pageable pageable = PageRequest.of(page - 1, 1);
+    //     Page<User> usersPage = this.userService.getAllUsers(pageable);
+    //     List<User> users = usersPage.getContent();
+    //     model.addAttribute("users1", users);
+
+    //     model.addAttribute("currentPage", page);
+    //     model.addAttribute("totalPages", usersPage.getTotalPages());
+    //     return "admin/user/show";
+    // }
+
+
     // Button View
     @RequestMapping("/admin/user/{id}")
     public String getUserDetailPage(Model model, @PathVariable long id) {

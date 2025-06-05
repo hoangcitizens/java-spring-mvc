@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import vn.hoangdev.laptopshop.domain.User;
 
+//crud: create, read, update, delete
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User save(User hoangdev);
@@ -17,6 +18,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAll();
 
-    User findById(long id);
+    User findById(long id); // null
 
+    boolean existsByEmail(String email);
+
+    User findByEmail(String email);
 }
