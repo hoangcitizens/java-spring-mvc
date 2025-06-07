@@ -51,11 +51,7 @@
 
                 <jsp:include page="../layout/header.jsp" />
 
-
                 <jsp:include page="../layout/banner.jsp" />
-
-
-
 
                 <!-- Laptop Shop Start-->
                 <div class="container-fluid fruite py-5">
