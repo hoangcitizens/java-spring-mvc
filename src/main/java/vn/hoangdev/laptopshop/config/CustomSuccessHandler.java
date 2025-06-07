@@ -56,10 +56,10 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             //session.setAttribute("user", user);
             session.setAttribute("fullName", user.getFullName());
             session.setAttribute("avatar", user.getAvatar());
-            //session.setAttribute("id", user.getId());
-            //session.setAttribute("email", user.getEmail());
-            // int sum = user.getCart() == null ? 0 : user.getCart().getSum();
-            // session.setAttribute("sum", sum);
+            session.setAttribute("id", user.getId());
+            session.setAttribute("email", user.getEmail());
+            int sum = user.getCart() == null ? 0 : user.getCart().getSum();
+            session.setAttribute("sum", sum);
         }
     }
 
@@ -70,16 +70,13 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             Authentication authentication) throws IOException, ServletException {
 
         String targetUrl = determineTargetUrl(authentication);
-        clearAuthenticationAttributes(request, authentication);
 
         if (response.isCommitted()) {
 
             return;
         }
-
         redirectStrategy.sendRedirect(request, response, targetUrl);
+        clearAuthenticationAttributes(request, authentication);
         
-
     }
-
 }

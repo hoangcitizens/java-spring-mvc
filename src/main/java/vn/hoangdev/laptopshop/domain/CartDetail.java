@@ -11,9 +11,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "order_detail")
-public class OrderDetail implements Serializable {
-
+@Table(name = "cart_detail")
+public class CartDetail implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -21,12 +20,13 @@ public class OrderDetail implements Serializable {
     private long id;
 
     private long quantity;
+
     private double price;
 
-    // order_id: long
+    // cart_id: long
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     // product_id: long
     @ManyToOne
@@ -57,12 +57,12 @@ public class OrderDetail implements Serializable {
         this.price = price;
     }
 
-    public Order getOrder() {
-        return order;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public Product getProduct() {

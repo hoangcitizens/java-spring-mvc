@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -19,10 +20,10 @@ import jakarta.validation.constraints.Size;
 @Table(name = "users")
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L; // Để đảm bảo tính duy nhất của phiên bản này
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tăng id
     private long id;
 
     @NotNull
@@ -51,8 +52,8 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
-    // @OneToOne(mappedBy = "user")
-    // private Cart cart;
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
 
     @Override
     public String toString() {
@@ -132,12 +133,12 @@ public class User implements Serializable {
         this.orders = orders;
     }
 
-    // public Cart getCart() {
-    //     return cart;
-    // }
+    public Cart getCart() {
+        return cart;
+    }
 
-    // public void setCart(Cart cart) {
-    //     this.cart = cart;
-    // }
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
 }
